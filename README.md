@@ -27,6 +27,7 @@ docker run -it ubuntu bash
 ```
 
 ## Criar um container e removê-lo assim que o processo for encerrado
+- --rm: remove o container quando o processo é encerrado.
 ```
 docker run -it --rm ubuntu bash
 ```
