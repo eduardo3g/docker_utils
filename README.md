@@ -50,8 +50,18 @@ Suponha que você queira subir um container com NGINX, que por default expõe a 
 docker run -p 8080:80 nginx
 ```
 
-# Iniciar containers em modo detached
+## Iniciar containers em modo detached
 - -d: executar o container em modo <i>Detached</i>, para não prender o terminal e manter a execução do container em background.
 ```
 docker run -d -p 8080:80 nginx
+```
+
+## Remover container
+```
+docker rm [container_id ou container_name]
+```
+
+## Forçar remoção de container
+```
+docker rm [container_id ou container_name] -f
 ```
