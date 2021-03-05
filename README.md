@@ -25,3 +25,17 @@ docker run hello-world
 ```
 docker run -it ubuntu bash
 ```
+
+## Criar um container e removê-lo assim que o processo for encerrado
+```
+docker run -it --rm ubuntu bash
+```
+
+## Iniciar um container existente
+```
+docker start [container_id ou container_name]
+```
+## Parar um container
+```
+docker stop [container_id ou container_name]
+```
