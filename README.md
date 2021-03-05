@@ -40,7 +40,7 @@ docker start [container_id ou container_name]
 ```
 docker stop [container_id ou container_name]
 ```
-# Redirecionar portar
+## Redirecionar portas
 Suponha que você queira subir um container com NGINX, que por default expõe a porta 80. Para acessar a porta 80 do NGINX, é necessário fazer um redirecionamento da porta do Docker Host (no caso pode ser sua máquina) para a porta do container.
 - -p: indica que será realizado um redirecionamento de portas.
 - 8080: indica qual porta do <b>Docker Host</b> será redirecionada.
