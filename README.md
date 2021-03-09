@@ -65,3 +65,13 @@ docker rm [container_id ou container_name]
 ```
 docker rm [container_id ou container_name] -f
 ```
+
+## Executar comando no container
+No exemplo abaixo, acessamos o container chamado "nginx" e executamos o comando "ls".
+```
+docker exec nginx ls
+```
+Para executar o bash e manter o terminal "alive", é preciso adicionar as flags abaixo:
+```
+docker exec -it nginx bash
+```
