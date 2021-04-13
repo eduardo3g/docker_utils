@@ -75,3 +75,15 @@ Para executar o bash e manter o terminal "alive", é preciso adicionar as flags 
 ```
 docker exec -it nginx bash
 ```
+
+## Bind Mounts - Mapear um volume local para dentro do Docker
+- Criará um container Nginx, mapeando a porta 8080 do Docker Host para a porta 80 do Nginx.
+- Irá realizar um bind mount da pasta "[diretorio-local]/html" para o diretório /usr/share/nginx/html dentro do container Nginx. Todos os arquivos criados localmente serão refletidos para dentro do container.
+- $(pwd) - é o path que o usuário está localizado.
+```
+docker run -d --name nginx -p 8080:80 --mount type=bind,source="$(pwd)"/html,target=/usr/share/nginx/html nginx
+```
+Também é possível utilizar uma sintaxe mais antiga, anterior ao --mount, que é a flag -v. Veja o exemplo abaixo:
+```
+docker run -d --rm -p 8080:80 -v $(pwd)/html:/usr/share/nginx/html nginx
+```
