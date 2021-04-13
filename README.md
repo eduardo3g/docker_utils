@@ -87,3 +87,59 @@ Também é possível utilizar uma sintaxe mais antiga, anterior ao --mount, que 
 ```
 docker run -d --rm -p 8080:80 -v $(pwd)/html:/usr/share/nginx/html nginx
 ```
+
+## Volumes
+### Listar volumes
+```
+docker volume ls
+```
+
+### Criar volume
+```
+docker volume create my-volume
+```
+
+### Inspecionar volume
+Mountpoint: local onde ficam gravados os arquivos dentro de sua máquina (ex: <b>/var/lib/docker/volumes/my-volume/_data</b>).
+```
+docker volume inspect my-volume
+```
+
+### Mapear volume para dentro do container
+Dessa maneira, será possível criar diversos containers (nginx1, nginx2, nginx3) compartilhando um único volume (source). Ou seja, arquivos criados em qualquer um dos containers estarão compartilhados entre eles. Os arquivos do volume serão criados dentro da pasta <b>app</b> no container.
+```
+docker run --name nginx -d --mount type=volume,source=my-volume,target=/app nginx
+```
+É possível criar um container utilizando a flag -v ao invés de --mount. Veja abaixo:
+```
+docker run --name nginx3 -d -v my-volume:/app nginx
+```
+
+### Limpar os volumes
+É possível que sua máquina fique com o armazenamento cheio por conta de volumes do Docker. Para limpar estes arquivos, execute o comando abaixo:
+```
+docker volume prune
+```
+
+## Images
+### Listar imagens instaladas localmente
+```
+docker images
+```
+
+### Baixar imagem do Docker Hub
+Baixará a imagem mais recente do Ubuntu.
+```
+docker pull ubuntu
+```
+
+### Baixar imagem com uma tag específica
+Baixará a imagem do PHP com a tag <b>rc-alpine</b>
+```
+docker pull php:rc-alpine
+```
+
+### Baixar imagem com uma tag específica
+```
+docker rmi php:rc-alpine
+```
