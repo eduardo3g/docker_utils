@@ -143,3 +143,15 @@ docker pull php:rc-alpine
 ```
 docker rmi php:rc-alpine
 ```
+
+### Buildar imagem a partir do Dockerfile
+- O parâmetro <b>eduardo3g</b> da flag -t (tag) é o usuário do Docker Hub (Registry). Esta é uma boa prática para criar imagems.
+- O "." no final do comando é o diretório em que o Dockerfile está presente. Caso o comando seja executado no mesmo diretório, utiliza-se um ".".
+```
+docker build -t eduardo3/nginx-with-vim:latest .
+```
+
+Para acessar o container o qual o build foi feito a partir da imagem recém-criada, basta utilizar o comando:
+```
+docker run -it eduardo3/nginx-with-vim bash
+```
