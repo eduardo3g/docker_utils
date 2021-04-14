@@ -66,6 +66,14 @@ docker rm [container_id ou container_name]
 docker rm [container_id ou container_name] -f
 ```
 
+## Remover todos os containers
+- -a lista todos os containers ativos e inativos
+- -q retorna os IDs dos containers selecionados
+- -f força a remoção caso algum dos containers estejam ativos
+```
+docker rm $(docker ps -a -q) -f
+```
+
 ## Executar comando no container
 No exemplo abaixo, acessamos o container chamado "nginx" e executamos o comando "ls".
 ```
