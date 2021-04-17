@@ -172,3 +172,36 @@ O principal uso de network é permitir que um container se comunique com o outro
 - * Host: mescla a rede do Dcker com a rede do Docker Host (sua máquina por exemplo). Imagine que você tenha uma aplicação PHP rodando no Docker Host através da porta 80. <br /> Caso você suba um container Docker na mesma rede (tipo "host") do Docker Host, será possível realizar a comunicação entre a aplicação PHP no Docker Host com a aplicação no container do Docker. Essa comunicação será feita diretamente, sem ser necessário realizar o mapeamento de portas (-p).
 - Overlay: é utilizado para realizar comunicação de Docker Hosts diferentes.
 - None: quando não há nenhuma rede e o container irá ser exetuado de forma isolada.
+
+## Listar redes
+```
+docker network ls
+```
+
+## Remover todas as networks não utilizadas
+```
+docker network prune
+```
+
+## Inspecionar uma determinada network
+Neste exemplo, será possível inspecionar dados da rede chamada "bridge".
+```
+docker network inspect bridge
+```
+
+## Criar uma network
+Criará uma network do tipo "bridge" chamada "mynetwork".
+```
+docker network create --driver bridge mynetwork
+```
+## Criar um container dentro da rede recém-criada
+No exemplo abaixo seŕa criado um container chamado "ubuntu1" na rede "mynetwork" do tipo bridge. Caso sejam criados mais containers na mesma rede (ex: ubuntu2, ubuntu3, etc.), seŕa possível realizar um ping pelo nome dos containers. Por exemplo, dentro de ubuntu1 será possível executar o comando "ping ubuntu2".
+```
+docker run -d -it --name ubuntu1 --network mynetwork bash
+```
+
+## Inserir um container existente dentro de uma rede já existente
+Neste exemplo, será possível conectar o container chamado "ubunutu3" dentro da rede chamada "mynetwork".
+```
+docker network connect mynetwork ubuntu3
+```
