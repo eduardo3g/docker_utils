@@ -163,3 +163,12 @@ Para acessar o container o qual o build foi feito a partir da imagem recém-cria
 ```
 docker run -it eduardo3/nginx-with-vim bash
 ```
+
+## Network
+O principal uso de network é permitir que um container se comunique com o outro. Imagine que você tenha dois containers, um executando Node.js e outro Laravel (PHP). Para que um comunique-se com o outro, é necessária uma network.
+
+### Tipos de Network
+- Bridge (tipo de rede default): utulizada para um container comunicar-se com o outro.
+- * Host: mescla a rede do Dcker com a rede do Docker Host (sua máquina por exemplo). Imagine que você tenha uma aplicação PHP rodando no Docker Host através da porta 80. <br /> Caso você suba um container Docker na mesma rede (tipo "host") do Docker Host, será possível realizar a comunicação entre a aplicação PHP no Docker Host com a aplicação no container do Docker. Essa comunicação será feita diretamente, sem ser necessário realizar o mapeamento de portas (-p).
+- Overlay: é utilizado para realizar comunicação de Docker Hosts diferentes.
+- None: quando não há nenhuma rede e o container irá ser exetuado de forma isolada.
