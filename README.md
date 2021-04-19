@@ -1,5 +1,6 @@
-# Docker Survival Guide
-Useful Docker CLI commands 👷🏽
+<h1 align="center">
+  Docker 101 🧑🏽‍💻
+</h1>
 
 ## Comandos básicos
 
