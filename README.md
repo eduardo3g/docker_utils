@@ -1,22 +1,24 @@
 # Docker Survival Guide
 Useful Docker CLI commands 👷🏽
 
-## Listar containers ativos
+## Comandos básicos
+
+### Listar containers ativos
 ```
 docker ps
 ```
 
-## Listar todos os containers (incluindo inativos)
+### Listar todos os containers (incluindo inativos)
 ```
 docker ps -a
 ```
 
-## Criar um container hello-world
+### Criar um container hello-world
 ```
 docker run hello-world
 ```
 
-## Criar container ubuntu e iniciar o bash
+### Criar container ubuntu e iniciar o bash
 - -it: são parâmetros que poderiam ser passados separadamente. (-i -t), sendo eles:
   - -i: modo interativo, ou seja, irá manter o stdin ativo em seu terminal. Basicamente mantém seu terminal local conectado com o bash do cotainer.
   - -t: significa TTY, o que permite executar comandos no terminal.
@@ -26,21 +28,21 @@ docker run hello-world
 docker run -it ubuntu bash
 ```
 
-## Criar um container e removê-lo assim que o processo for encerrado
+### Criar um container e removê-lo assim que o processo for encerrado
 - --rm: remove o container quando o processo é encerrado.
 ```
 docker run -it --rm ubuntu bash
 ```
 
-## Iniciar um container existente
+### Iniciar um container existente
 ```
 docker start [container_id ou container_name]
 ```
-## Parar um container
+### Parar um container
 ```
 docker stop [container_id ou container_name]
 ```
-## Redirecionar portas
+### Redirecionar portas
 Suponha que você queira subir um container com NGINX, que por default expõe a porta 80. Para acessar a porta 80 do NGINX, é necessário fazer um redirecionamento da porta do Docker Host (no caso pode ser sua máquina) para a porta do container.
 - -p: indica que será realizado um redirecionamento de portas.
 - 8080: indica qual porta do <b>Docker Host</b> será redirecionada.
@@ -50,23 +52,23 @@ Suponha que você queira subir um container com NGINX, que por default expõe a 
 docker run -p 8080:80 nginx
 ```
 
-## Iniciar containers em modo detached
+### Iniciar containers em modo detached
 - -d: executar o container em modo <i>Detached</i>, para não prender o terminal e manter a execução do container em background.
 ```
 docker run -d -p 8080:80 nginx
 ```
 
-## Remover container
+### Remover container
 ```
 docker rm [container_id ou container_name]
 ```
 
-## Forçar remoção de container
+### Forçar remoção de container
 ```
 docker rm [container_id ou container_name] -f
 ```
 
-## Remover todos os containers
+### Remover todos os containers
 - -a lista todos os containers ativos e inativos
 - -q retorna os IDs dos containers selecionados
 - -f força a remoção caso algum dos containers estejam ativos
@@ -74,7 +76,7 @@ docker rm [container_id ou container_name] -f
 docker rm $(docker ps -a -q) -f
 ```
 
-## Executar comando no container
+### Executar comando no container
 No exemplo abaixo, acessamos o container chamado "nginx" e executamos o comando "ls".
 ```
 docker exec nginx ls
@@ -84,7 +86,7 @@ Para executar o bash e manter o terminal "alive", é preciso adicionar as flags 
 docker exec -it nginx bash
 ```
 
-## Bind Mounts - Mapear um volume local para dentro do Docker
+### Bind Mounts - Mapear um volume local para dentro do Docker
 - Criará um container Nginx, mapeando a porta 8080 do Docker Host para a porta 80 do Nginx.
 - Irá realizar um bind mount da pasta "[diretorio-local]/html" para o diretório /usr/share/nginx/html dentro do container Nginx. Todos os arquivos criados localmente serão refletidos para dentro do container.
 - $(pwd) - é o path que o usuário está localizado.
