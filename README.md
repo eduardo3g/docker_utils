@@ -204,7 +204,7 @@ docker run -d -it --name ubuntu1 --network mynetwork bash
 ```
 
 ### Inserir um container existente dentro de uma rede já existente
-Neste exemplo, será possível conectar o container chamado "ubunutu3" dentro da rede chamada "mynetwork".
+Neste exemplo, será possível conectar o container chamado "ubuntu3" dentro da rede chamada "mynetwork".
 ```
 docker network connect mynetwork ubuntu3
 ```
