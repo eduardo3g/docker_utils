@@ -215,3 +215,37 @@ No exemplo abaixo, a rede do container será "mesclada" com a rede do Docker Hos
 ```
 docker run --rm -d --name nginx --network host nginx
 ```
+
+## Exemplos práticos
+
+### Instalando framework num container (PHP com Laravel)
+Instalar o PHP na versão 7.4 e executar o bash do container.
+```
+docker run -it --name php php:7.4-cli bash
+```
+
+Executar os seguintes comandos dentro do bash:
+```
+apt-get update
+```
+Será também necessário instalar o Composer, que é o gerenciador de pacotes (semelhante ao NPM) do PHP. Veja os passos <a href="https://getcomposer.org/download/">aqui</a>.
+```
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php -r "if (hash_file('sha384', 'composer-setup.php') === '756890a4488ce9024fc62c56153228907f1545c228516cbf63f885e036d37e9a59d27d63f46af1d4d07ee0f76181c7d3') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+php composer-setup.php
+php -r "unlink('composer-setup.php');"
+```
+Instalar o libzip-dev para que não seja necessário obter um token no Git ao instalar o 
+```
+apt-get install libzip-dev -y
+```
+
+Feito isso, instalar a extensão ZIP do PHP.
+```
+docker-php-ext-install zip
+```
+
+Finalmente conseguiremos criar um projeto Laravel (diretório /var/www) chamado "laravel-example".
+```
+php composer.phar create-project --prefer-dist laravel/laravel laravel-example
+```
