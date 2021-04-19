@@ -205,3 +205,10 @@ Neste exemplo, será possível conectar o container chamado "ubunutu3" dentro da
 ```
 docker network connect mynetwork ubuntu3
 ```
+
+## Criar container em network do tipo host
+No exemplo abaixo, a rede do container será "mesclada" com a rede do Docker Host. Sendo assim, será possível acessar o localhost (port 80 por default) e carregar o nginx. <br />
+<b>IMPORTANTE:</b> esta funcionalidade não funciona no Mac OS. Caso esteja utilizando Windows, é possível via WSL2. Esta funcionalidade não possui limitações no linux.
+```
+docker run --rm -d --name nginx --network host nginx
+```
